@@ -41,11 +41,11 @@ class ChatChienApp:
         self.root.geometry("740x520")
         self.root.configure(bg="#f5f5f5")
 
-        self.icon_chat = ImageTk.PhotoImage(Image.open("icon_chat.png").resize((32, 32)))
-        self.icon_chien = ImageTk.PhotoImage(Image.open("icon_chien.png").resize((32, 32)))
-        self.icon_next = ImageTk.PhotoImage(Image.open("icon_next.png").resize((32, 32)))
-        self.icon_previous = ImageTk.PhotoImage(Image.open("icon_previous.png").resize((32, 32)))
-        self.icon_prediction = ImageTk.PhotoImage(Image.open("icon_prediction.png").resize((32, 32)))
+        self.icon_chat = ImageTk.PhotoImage(Image.open("icons/icon_chat.png").resize((32, 32)))
+        self.icon_chien = ImageTk.PhotoImage(Image.open("icons/icon_chien.png").resize((32, 32)))
+        self.icon_next = ImageTk.PhotoImage(Image.open("icons/icon_next.png").resize((32, 32)))
+        self.icon_previous = ImageTk.PhotoImage(Image.open("icons/icon_previous.png").resize((32, 32)))
+        self.icon_prediction = ImageTk.PhotoImage(Image.open("icons/icon_prediction.png").resize((32, 32)))
 
         self.chat_imgs_preview = []
         self.chien_imgs_preview = []
