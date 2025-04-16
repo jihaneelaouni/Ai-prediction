@@ -38,13 +38,14 @@ class ChatChienApp:
     def __init__(self, root):
         self.root = root
         self.root.title("🧠 AI - Prédiction Chat vs Chien")
-        self.root.geometry("605x416")
+        self.root.geometry("740x520")
         self.root.configure(bg="#f5f5f5")
 
         self.icon_chat = ImageTk.PhotoImage(Image.open("icon_chat.png").resize((32, 32)))
         self.icon_chien = ImageTk.PhotoImage(Image.open("icon_chien.png").resize((32, 32)))
         self.icon_next = ImageTk.PhotoImage(Image.open("icon_next.png").resize((32, 32)))
         self.icon_previous = ImageTk.PhotoImage(Image.open("icon_previous.png").resize((32, 32)))
+        self.icon_prediction = ImageTk.PhotoImage(Image.open("icon_prediction.png").resize((32, 32)))
 
         self.chat_imgs_preview = []
         self.chien_imgs_preview = []
@@ -80,7 +81,7 @@ class ChatChienApp:
         self.chien_preview_frame.pack()
 
         self.btn_next = tk.Button(self.root, text="  Suivant   ", image=self.icon_next, compound="right",
-                                  bg="#87cefa", fg="white", font=("Arial", 12), command=self.step2_window, state=tk.DISABLED)
+                                  bg="#87cefa", fg="white", font=("Arial", 12 , "bold"), command=self.step2_window, state=tk.DISABLED)
         self.btn_next.pack(pady=30)
 
     def display_previews(self, paths, target_frame, preview_list, bg_color):
@@ -98,21 +99,21 @@ class ChatChienApp:
     def add_images_chat(self):
         files = filedialog.askopenfilenames(title="Choisir 10 images de chats")
         if len(files) != 10:
-            messagebox.showerror("Erreur", "Tu dois choisir exactement 10 images.")
+            messagebox.showerror("Erreur ❌", "Tu dois choisir exactement 10 images.")
             return
         copy_images_to_folder(files, "dataset/chats")
         self.display_previews(files, self.chat_preview_frame, self.chat_imgs_preview, "#d0f0ff")
-        messagebox.showinfo("Succès", "Images de chats ajoutées !")
+        messagebox.showinfo("Succès ✅ ", "Images de chats ajoutées !")
         self.check_next_button()
 
     def add_images_chien(self):
         files = filedialog.askopenfilenames(title="Choisir 10 images de chiens")
         if len(files) != 10:
-            messagebox.showerror("Erreur", "Tu dois choisir exactement 10 images.")
+            messagebox.showerror("Erreur ❌", "Tu dois choisir exactement 10 images.")
             return
         copy_images_to_folder(files, "dataset/chiens")
         self.display_previews(files, self.chien_preview_frame, self.chien_imgs_preview, "#ffe5d0")
-        messagebox.showinfo("Succès", "Images de chiens ajoutées !")
+        messagebox.showinfo("Succès ✅", "Images de chiens ajoutées !")
         self.check_next_button()
 
     def check_next_button(self):
@@ -123,7 +124,7 @@ class ChatChienApp:
         self.clear_window()
         self.img_path = None
 
-        tk.Label(self.root, text="Étape 2 : Prédire une image", font=("Arial", 20, "bold"), bg="#f5f5f5", fg="#444").pack(pady=10)
+        tk.Label(self.root, text="Étape 2 : Prédire une image", font=("Arial", 20, "bold"), bg="#f5f5f5", fg="#41c124").pack(pady=10)
 
         self.image_label = tk.Label(self.root, bg="#f5f5f5")
         self.image_label.pack(pady=10)
@@ -135,9 +136,10 @@ class ChatChienApp:
         button_frame = tk.Frame(self.root, bg="#F0F8FF")
         button_frame.pack(pady=10)
 
-        tk.Button(button_frame, text="  Précédent", image=self.icon_previous, compound="left",
-                                  bg="#87cefa", fg="white", font=("Arial", 12), command=self.step1_window,).pack(side=tk.LEFT, padx=30)
-        tk.Button(button_frame, text="Prédire", command=self.do_prediction, bg="#FFA07A", fg="white", font=("Arial", 12, "bold"), width=12).pack(side=tk.LEFT, padx=10)
+        tk.Button(button_frame, text="  Précédent ", image=self.icon_previous, compound="left",
+                                  bg="#87cefa", fg="white", font=("Arial", 12 , "bold"), command=self.step1_window,).pack(side=tk.LEFT, padx=30)
+        tk.Button(button_frame, text="  Prédire  ", image=self.icon_prediction, compound="left", 
+                                 bg="#FFA07A", fg="white", font=("Arial", 12, "bold"), command=self.do_prediction,).pack(side=tk.LEFT, padx=30)
 
     def choose_image(self):
         file_path = filedialog.askopenfilename(title="Choisir une image à prédire")
@@ -151,7 +153,7 @@ class ChatChienApp:
 
     def do_prediction(self):
         if not self.img_path:
-            messagebox.showwarning("Attention", "Aucune image sélectionnée.")
+            messagebox.showwarning("Attention !", "Aucune image sélectionnée.")
             return
 
         chat_imgs = [f"dataset/chats/{f}" for f in os.listdir("dataset/chats") if f.endswith((".jpg", ".jpeg", ".png"))]
