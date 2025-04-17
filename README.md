@@ -1,5 +1,19 @@
-Setup 
-1 ere chose preparer l'environement 
-executer la cmd : python -m venv venv CD VENV venv\Scripts\activate
-apres excuter la cmd : pip install pillow numpy
-puis python main.py pour excuter le projet 
+# Etape d'installation du projet:
+
+## preparer l'environement:
+### Creation d'un environnement virtuel :
+```bash
+python -m venv venv
+```
+### Activer l'environnement:
+```bash
+venv\Scripts\activate
+```
+### Installation des bibliotheque naissessaire:
+```bash
+pip install pillow numpy
+```
+## Execution du fichier main.py:
+```bash
+python main.py
+``` 
